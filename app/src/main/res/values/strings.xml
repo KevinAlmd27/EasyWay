@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Easy Way</string>
+    <string name="entrar">Entrar</string>
+    <string name="text_cadastro">Crie uma conta clicando aqui</string>
+    <string name="title_cadastro">Cadastre-se</string>
+    <string name="ola_motorista">Olá Motorista!</string>
+    <string name="selecione_caminhao">Selecione seu caminhão</string>
+    <string name="batata">Batata de Campinas ➥ São Paulo</string>
+    <string name="cana">Cana de Minas Gerais ➥ São Paulo</string>
+    <string name="morango">Morango de Atibaia ➥ Santo André</string>
+    <string name="tomate">Tomate de Jundiaí ➥ Guarulhos</string>
+    <string name="trabalho">Escolha um Trabalho!</string>
+    <string name="btnTrabalho">Aperte aqui após selecionar um trabalho</string>
+    <string name="btnMenuVeiculo">Veículos</string>
+    <string name="btnMenuServicos">Serviços</string>
+    <string name="btnMenuMotoristas">Motoristas</string>
+</resources>

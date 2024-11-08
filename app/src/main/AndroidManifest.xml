@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@drawable/easyway_ico"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/easyway_ico"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.EasyWay"
+        tools:targetApi="31">
+        <activity
+            android:name=".Menu"
+            android:exported="false" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBBrje-m4EVpbf3ju-NHrgL96hlmAjPT80" />
+
+        <activity
+            android:name=".MapsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FormLogin"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TelaInicial"
+            android:exported="false" />
+        <activity
+            android:name=".Trabalhos"
+            android:exported="false" />
+        <activity
+            android:name=".FormCadastro"
+            android:exported="false" />
+    </application>
+
+</manifest>

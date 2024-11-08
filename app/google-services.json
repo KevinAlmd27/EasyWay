@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "44510844532",
+    "project_id": "easy-way-38b8e",
+    "storage_bucket": "easy-way-38b8e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:44510844532:android:09e6cef2a3ed5e0ce7e321",
+        "android_client_info": {
+          "package_name": "com.example.easyway"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvo8K_DL2OQzw97pdJBwrX6Dupipvrz1I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
