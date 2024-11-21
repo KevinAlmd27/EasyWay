@@ -32,7 +32,6 @@ import java.util.List;
 import java.util.Locale;
 
 public class AdicionarServico extends AppCompatActivity {
-
     private EditText etNomeServico, etValor;
     private AutoCompleteTextView etOrigem, etDestino;
     private Button btnSalvarServico;
@@ -82,6 +81,11 @@ public class AdicionarServico extends AppCompatActivity {
                     etValor.setSelection(etValor.getText().length());
                 }
                 isUpdating = false;
+            }
+//TODO implementei esse metodo para resolver o erro, dps vemos se ele e realmente preciso
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
 
         });
