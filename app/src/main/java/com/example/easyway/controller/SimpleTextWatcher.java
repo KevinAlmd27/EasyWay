@@ -14,10 +14,9 @@ public abstract class SimpleTextWatcher implements TextWatcher {
     public void onTextChanged(CharSequence s, int start, int before, int count) {
         // Para ser implementado na classe anônima ou filha
     }
-
     @Override
     public void afterTextChanged(Editable s) {
-        // Não faz nada por padrão
     }
+
 }
 
