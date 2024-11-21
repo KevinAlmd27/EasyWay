@@ -1,4 +1,4 @@
-package com.example.easyway;
+package com.example.easyway.activity;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import androidx.fragment.app.FragmentActivity;
 
+import com.example.easyway.R;
 import com.example.easyway.databinding.ActivityMainBinding;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;

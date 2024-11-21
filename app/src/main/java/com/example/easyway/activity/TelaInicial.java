@@ -1,4 +1,4 @@
-package com.example.easyway;
+package com.example.easyway.activity;
 
 import android.os.Bundle;
 
@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.example.easyway.R;
 
 public class TelaInicial extends AppCompatActivity {
 

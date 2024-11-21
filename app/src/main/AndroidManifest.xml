@@ -13,7 +13,19 @@
         android:theme="@style/Theme.EasyWay"
         tools:targetApi="31">
         <activity
-            android:name=".Menu"
+            android:name=".activity.Perfil"
+            android:exported="false" />
+        <activity
+            android:name=".controller.Config"
+            android:exported="false" />
+        <activity
+            android:name=".cadastros.AdicionarServico"
+            android:exported="false" />
+        <activity
+            android:name=".activity.activity_main_caminhao"
+            android:exported="false" />
+        <activity
+            android:name=".controller.Menu"
             android:exported="false" />
 
         <meta-data
@@ -21,10 +33,10 @@
             android:value="AIzaSyBBrje-m4EVpbf3ju-NHrgL96hlmAjPT80" />
 
         <activity
-            android:name=".MapsActivity"
+            android:name=".activity.MapsActivity"
             android:exported="false" />
         <activity
-            android:name=".FormLogin"
+            android:name=".cadastros.FormLogin"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,16 +45,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".TelaInicial"
+            android:name=".activity.TelaInicial"
             android:exported="false" />
         <activity
-            android:name=".Trabalhos"
+            android:name=".controller.Trabalhos"
             android:exported="false" />
         <activity
-            android:name=".FormCadastro"
+            android:name=".cadastros.FormCadastro"
             android:exported="false" />
     </application>
 

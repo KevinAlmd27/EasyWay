@@ -38,6 +38,7 @@ android {
 
 dependencies {
 
+
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
@@ -47,5 +48,13 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
     implementation("com.google.firebase:firebase-auth-ktx")
+    implementation ("com.google.firebase:firebase-firestore:24.2.0")
+    implementation ("com.google.firebase:firebase-analytics:21.0.5")
     implementation(platform("com.google.firebase:firebase-bom:33.5.1"))
+    implementation ("com.google.android.libraries.places:places:3.2.0")
+    implementation ("com.google.android.libraries.places:places:3.2.0")
+    implementation ("com.google.android.gms:play-services-maps:18.0.2")
+    implementation ("com.google.android.gms:play-services-location:19.0.1")
+    implementation ("com.google.maps:google-maps-services:0.18.0")
+    implementation(libs.recyclerview)
 }

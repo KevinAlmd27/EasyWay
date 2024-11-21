@@ -11,7 +11,17 @@
     <string name="tomate">Tomate de Jundiaí ➥ Guarulhos</string>
     <string name="trabalho">Escolha um Trabalho!</string>
     <string name="btnTrabalho">Aperte aqui após selecionar um trabalho</string>
-    <string name="btnMenuVeiculo">Veículos</string>
-    <string name="btnMenuServicos">Serviços</string>
-    <string name="btnMenuMotoristas">Motoristas</string>
+    <string name="btn1">Veículos</string>
+    <string name="btn2">Serviços</string>
+    <string name="btn3">Adicionar Serviço</string>
+    <string name="btn4">Configurações</string>
+    <string name="title_config">Configurações</string>
+    <string name="btnPerfil">Perfil</string>
+    <string name="btnLogout">Log-out</string>
+    <string name="development">Development by Grupo Matriz - 2024</string>
+    <string name="title_perfil">Perfil de Usuário</string>
+    <string name="perfil_nome">Nome:</string>
+    <string name="perfil_email">E-mail:</string>
+    <string name="perfil_cpf">CPF:</string>
+    <string name="perfil_tipo">Tipo de Usuário:</string>
 </resources>

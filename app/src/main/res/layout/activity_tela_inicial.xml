@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:padding="10dp"
-    tools:context=".TelaInicial">
+    tools:context=".activity.TelaInicial">
 
     <ImageView
         android:id="@+id/caminhoesImg"

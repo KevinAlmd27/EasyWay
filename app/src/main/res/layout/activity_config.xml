@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".controller.Config">
+
+    <TextView
+        android:id="@+id/tv_menu_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/blue2"
+        android:padding="15dp"
+        android:text="Configurações"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:gravity="center" />
+
+    <GridLayout
+        android:id="@+id/grid_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:columnCount="1"
+        android:rowCount="2"
+        android:padding="16dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="60dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_config_1"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_margin="10dp"
+            android:text="@string/btnPerfil"
+            android:textColor="@color/black"
+            android:textAlignment="textStart"
+            android:backgroundTint="@color/white"
+            app:cornerRadius="10dp"
+            app:icon="@drawable/btn_perfil"
+            app:iconSize="40dp"
+            app:iconTint="@color/blue2"
+            android:elevation="5dp"
+            android:stateListAnimator="@null" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_config_2"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_margin="10dp"
+            android:text="@string/btnLogout"
+            android:textColor="@color/black"
+            android:textAlignment="textStart"
+            android:backgroundTint="@color/white"
+            app:cornerRadius="10dp"
+            app:icon="@drawable/btn_logout"
+            app:iconSize="40dp"
+            app:iconTint="@color/blue2"
+            android:elevation="5dp"
+            android:stateListAnimator="@null"/>
+    </GridLayout>
+
+    <TextView
+        android:id="@+id/tv_development"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:text="@string/development"
+        android:textSize="14sp" />
+
+</RelativeLayout>
