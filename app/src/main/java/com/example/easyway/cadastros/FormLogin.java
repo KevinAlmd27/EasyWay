@@ -14,7 +14,6 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.easyway.R;
-import com.example.easyway.controller.Menu;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class FormLogin extends AppCompatActivity {

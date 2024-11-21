@@ -22,7 +22,7 @@
         android:layout_margin="16dp" />
 
     <!-- Contêiner para Autocomplete da Origem -->
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/etOrigem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
         />
 
     <!-- Contêiner para Autocomplete do Destino -->
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/etDestino"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
