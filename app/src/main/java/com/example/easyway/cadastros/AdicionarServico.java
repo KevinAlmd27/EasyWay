@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -14,24 +15,40 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.easyway.R;
+import com.example.easyway.activity.MainActivity;
+import com.example.easyway.controller.AutoCompleteAdapter;
+import com.example.easyway.controller.SimpleTextWatcher;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.AutocompletePrediction;
+import com.google.android.libraries.places.api.model.AutocompleteSessionToken;
+import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRequest;
+import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.IOException;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 public class AdicionarServico extends AppCompatActivity {
 
-    private EditText etNomeServico, etOrigem, etDestino, etValor;
+    private EditText etNomeServico, etValor;
+    private AutoCompleteTextView etOrigem, etDestino;
     private Button btnSalvarServico;
     private FirebaseFirestore db;
+
+    private PlacesClient placesClient;
+    private AutocompleteSessionToken sessionToken;
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adicionar_servico);
+
+        placesClient = Places.createClient(this);
+        sessionToken = AutocompleteSessionToken.newInstance();
 
         // Inicializando as views
         etNomeServico = findViewById(R.id.etNomeServico);
@@ -67,11 +84,10 @@ public class AdicionarServico extends AppCompatActivity {
                 isUpdating = false;
             }
 
-            @Override
-            public void afterTextChanged(Editable editable) {
-                // Não é necessário implementar
-            }
         });
+
+        setupAutocomplete(etOrigem);
+        setupAutocomplete(etDestino);
 
         // Botão para salvar o serviço
         btnSalvarServico.setOnClickListener(v -> salvarServico());
@@ -125,6 +141,32 @@ public class AdicionarServico extends AppCompatActivity {
                 runOnUiThread(() -> Toast.makeText(AdicionarServico.this, "Erro ao obter coordenadas: " + e.getMessage(), Toast.LENGTH_SHORT).show());
             }
         }).start();
+    }
+    private void setupAutocomplete(AutoCompleteTextView autoCompleteTextView) {
+        autoCompleteTextView.addTextChangedListener(new SimpleTextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String input = s.toString();
+                if (!input.isEmpty()) {
+                    FindAutocompletePredictionsRequest request = FindAutocompletePredictionsRequest.builder()
+                            .setSessionToken(sessionToken)
+                            .setQuery(input)
+                            .build();
+
+                    placesClient.findAutocompletePredictions(request)
+                            .addOnSuccessListener(response -> {
+                                ArrayList<String> suggestions = new ArrayList<>();
+                                for (AutocompletePrediction prediction : response.getAutocompletePredictions()) {
+                                    suggestions.add(prediction.getFullText(null).toString());
+                                }
+
+                                AutoCompleteAdapter adapter = new AutoCompleteAdapter(AdicionarServico.this, suggestions);
+                                autoCompleteTextView.setAdapter(adapter);
+                            })
+                            .addOnFailureListener(e -> Toast.makeText(AdicionarServico.this, "Erro: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+                }
+            }
+        });
     }
 
     private LatLng geocodeEndereco(String endereco) {
