@@ -5,8 +5,8 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.TextWatcher;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -43,8 +43,10 @@ public class AdicionarServico extends AppCompatActivity {
         // Inicializando o Firebase Firestore
         db = FirebaseFirestore.getInstance();
 
-        // Adicionar TextWatcher para formatar o valor com "R$"
+        // Adicionar TextWatcher para formatar o valor como moeda
         etValor.addTextChangedListener(new TextWatcher() {
+            private boolean isUpdating = false;
+
             @Override
             public void beforeTextChanged(CharSequence charSequence, int start, int count, int after) {
                 // Não é necessário implementar
@@ -52,19 +54,17 @@ public class AdicionarServico extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
-                // Garantir que o valor tenha "R$" na frente
-                if (charSequence.length() > 0 && !charSequence.toString().startsWith("R$")) {
-                    etValor.removeTextChangedListener(this);  // Evitar loop de chamadas
-                    String valor = charSequence.toString().replaceAll("[^0-9]", "");  // Remover qualquer coisa que não seja número
-                    if (!valor.isEmpty()) {
-                        double valorFormatado = Double.parseDouble(valor) / 100.0;  // Converter para formato monetário
-                        NumberFormat numberFormat = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
-                        String valorComFormato = numberFormat.format(valorFormatado);  // Formatar o número como moeda
-                        etValor.setText(valorComFormato);  // Definir o texto no EditText
-                        etValor.setSelection(etValor.getText().length());  // Manter o cursor no final
-                    }
-                    etValor.addTextChangedListener(this);  // Re-adicionar o TextWatcher
+                if (isUpdating) return;
+
+                isUpdating = true;
+                String valor = charSequence.toString().replaceAll("[^0-9]", "");
+                if (!valor.isEmpty()) {
+                    double valorFormatado = Double.parseDouble(valor) / 100.0;
+                    NumberFormat numberFormat = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
+                    etValor.setText(numberFormat.format(valorFormatado));
+                    etValor.setSelection(etValor.getText().length());
                 }
+                isUpdating = false;
             }
 
             @Override
@@ -88,10 +88,8 @@ public class AdicionarServico extends AppCompatActivity {
             return;
         }
 
-        // Buscar as coordenadas dos endereços
         buscarCoordenadas(origem, destino, (origemCoordenadas, destinoCoordenadas) -> {
             if (origemCoordenadas != null && destinoCoordenadas != null) {
-                // Criando um objeto para armazenar no Firestore
                 Servico servico = new Servico(
                         nomeServico,
                         origem,
@@ -103,16 +101,13 @@ public class AdicionarServico extends AppCompatActivity {
                         valor
                 );
 
-                // Salvar no Firestore
                 db.collection("servicos")
                         .add(servico)
                         .addOnSuccessListener(documentReference -> {
                             Toast.makeText(this, "Serviço adicionado com sucesso!", Toast.LENGTH_SHORT).show();
                             limparCampos();
                         })
-                        .addOnFailureListener(e -> {
-                            Toast.makeText(this, "Erro ao adicionar serviço: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                        });
+                        .addOnFailureListener(e -> Toast.makeText(this, "Erro ao adicionar serviço: " + e.getMessage(), Toast.LENGTH_SHORT).show());
             } else {
                 Toast.makeText(this, "Erro ao obter coordenadas. Verifique os endereços.", Toast.LENGTH_SHORT).show();
             }
@@ -146,20 +141,17 @@ public class AdicionarServico extends AppCompatActivity {
         return null;
     }
 
-    // Método para limpar os campos após salvar
     private void limparCampos() {
         etNomeServico.setText("");
         etOrigem.setText("");
         etDestino.setText("");
-        etValor.setText("");  // Limpar o campo de valor
+        etValor.setText("");
     }
 
-    // Interface de callback para coordenadas
     public interface CoordenadasCallback {
         void onCoordenadasObtidas(LatLng origemCoordenadas, LatLng destinoCoordenadas);
     }
 
-    // Classe LatLng para armazenar coordenadas
     public static class LatLng {
         public double latitude;
         public double longitude;
@@ -170,7 +162,6 @@ public class AdicionarServico extends AppCompatActivity {
         }
     }
 
-    // Classe Servico para modelar o objeto a ser salvo no Firestore
     public static class Servico {
         private String nome;
         private String origem;
@@ -191,7 +182,5 @@ public class AdicionarServico extends AppCompatActivity {
             this.destinoLng = destinoLng;
             this.valor = valor;
         }
-
-        // Getters e setters (se necessário)
     }
 }
